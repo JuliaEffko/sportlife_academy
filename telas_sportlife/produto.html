@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto | SportLife</title>
+    <link rel="stylesheet" href="produto.css">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>Cadastro de Produto</h1>
+        <p class="subtitle">Adicione novos produtos esportivos</p>
+
+        <form>
+            <div class="input-group">
+                <label>Nome do Produto</label>
+                <input type="text" placeholder="Ex: Whey Protein, Luva de Boxe" required>
+            </div>
+
+            <div class="input-group">
+                <label>Categoria</label>
+                <select required>
+                    <option value="" disabled selected>Selecione uma categoria</option>
+                    <option>Academia</option>
+                    <option>Ciclismo</option>
+                    <option>Luta</option>
+                    <option>Natação</option>
+                    <option>Acessórios</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Preço (R$)</label>
+                <input type="number" step="0.01" placeholder="Ex: 149.90" required>
+            </div>
+
+            <div class="input-group">
+                <label>Quantidade em Estoque</label>
+                <input type="number" placeholder="Ex: 50" required>
+            </div>
+
+            <div class="input-group">
+                <label>Descrição do Produto</label>
+                <textarea placeholder="Descreva as características do produto..." required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Imagem do Produto</label>
+                <input type="file" accept="image/*">
+            </div>
+
+            <button type="submit">Cadastrar Produto</button>
+        </form>
+        
+        <a href="index.html" class="back-link">← Voltar para a tela inicial</a>
+    </div>
+</div>
+
+<script src="Produto.js"></script>
+</body>
+</html>

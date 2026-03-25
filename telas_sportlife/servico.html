@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Serviço | SportLife</title>
+    <link rel="stylesheet" href="servico.css">
+    
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h1>Cadastro de Serviço</h1>
+        <p class="subtitle">Cadastre novos serviços esportivos</p>
+
+        <form>
+            <div class="input-group">
+                <label for="service-name">Nome do Serviço</label>
+                <input type="text" id="service-name" placeholder="Ex: Personal Trainer, Aula de Muay Thai" required>
+            </div>
+
+            <div class="input-group">
+                <label for="category">Categoria</label>
+                <select id="category" required>
+                    <option value="">Selecione</option>
+                    <option>Academia</option>
+                    <option>Ciclismo</option>
+                    <option>Luta</option>
+                    <option>Natação</option>
+                    <option>Avaliação Física</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="price">Preço (R$)</label>
+                <input type="number" id="price" step="0.01" placeholder="Ex: 120.00" required>
+            </div>
+
+            <div class="input-group">
+                <label for="duration">Duração</label>
+                <input type="text" id="duration" placeholder="Ex: 60 minutos" required>
+            </div>
+
+            <div class="input-group">
+                <label for="description">Descrição do Serviço</label>
+                <textarea id="description" placeholder="Descreva o serviço oferecido..." required></textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="status">Status</label>
+                <select id="status" required>
+                    <option>Ativo</option>
+                    <option>Inativo</option>
+                </select>
+            </div>
+
+            <button type="submit">Cadastrar Serviço</button>
+        </form>
+    </div>
+</div>
+
+<script src="Serviço.js"></script>
+</body>
+</html>
