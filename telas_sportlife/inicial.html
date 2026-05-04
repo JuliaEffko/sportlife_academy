@@ -62,7 +62,7 @@
             background: linear-gradient(to right, #e2e8f0, var(--primary-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-decoration: none; /* Removido underline do link logo */
+            text-decoration: none;
         }
 
         nav a {
@@ -171,7 +171,7 @@
             transition: 0.5s;
             text-align: center;
             cursor: pointer;
-            text-decoration: none; /* Para os cards que virarem links */
+            text-decoration: none;
             color: white;
         }
 
@@ -225,12 +225,13 @@
         
         <nav>
             <a href="inicial.html">Home</a>
-            <a href="usuario.html">Usuários</a>
+            
+            <a href="adm.html">Administrador</a>
             <a href="produto.html">Produtos</a>
             <a href="servico.html">Serviços</a>
             <a href="planos.html">Planos</a>
             <a href="agenda.html">Agendar</a>
-            <a href="cadastro.html" class="btn-primary" style="padding: 10px 20px; border-radius: 50px;">Acessar</a>
+            <a href="cadastro.html" class="btn-primary" style="padding: 10px 20px; border-radius: 50px;">Acessar/Cadastrar</a>
         </nav>
     </header>
 
@@ -282,6 +283,27 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© SportLife'
         }).addTo(map);
+
+        // --- Controle de acesso por tipo de usuário ---
+        const tipoUsuario = localStorage.getItem('tipoUsuario') || 'usuario'; // Simulação
+
+        // Menu
+        const linkProduto = document.querySelector('nav a[href="produto.html"]');
+        const linkServico = document.querySelector('nav a[href="servico.html"]');
+
+        if(tipoUsuario !== 'admin'){
+            linkProduto.style.display = 'none';
+            linkServico.style.display = 'none';
+        }
+
+        // Cards na home
+        const cardProduto = document.querySelector('.modules-grid a[href="produto.html"]');
+        const cardServico = document.querySelector('.modules-grid a[href="servico.html"]');
+
+        if(tipoUsuario !== 'admin'){
+            cardProduto.style.display = 'none';
+            cardServico.style.display = 'none';
+        }
     </script>
 </body>
 </html>
