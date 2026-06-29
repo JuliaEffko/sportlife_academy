@@ -194,6 +194,30 @@
             filter: hue-rotate(220deg) brightness(0.6) invert(1) contrast(1.2);
         }
 
+        /* Customização dos Popups do Leaflet */
+        .leaflet-popup-content-wrapper {
+            background: #0f0f1a !important;
+            color: white !important;
+            border: 1px solid var(--primary-purple);
+            border-radius: 8px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .leaflet-popup-tip {
+            background: #0f0f1a !important;
+            border: 1px solid var(--primary-purple);
+        }
+        .popup-title {
+            font-weight: 800;
+            color: var(--neon-glow);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .popup-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
         footer {
             padding: 100px 5% 40px;
             border-top: 1px solid var(--border);
@@ -279,13 +303,34 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        const map = L.map('map').setView([-25.45, -49.27], 12);
+        // Inicializa o mapa com zoom reduzido para englobar as capitais e estados do Brasil
+        const map = L.map('map').setView([-14.235, -51.925], 4);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© SportLife'
         }).addTo(map);
 
+        // --- Inserção das 6 Academias solicitadas geograficamente ---
+        const unidadesSportLife = [
+            { nome: "SportLife - Unidade Cascavel (PR)", lat: -24.9555, lng: -53.4552, desc: "Centro de Treinamento de Rendimento" },
+            { nome: "SportLife - Unidade Rio de Janeiro (RJ)", lat: -22.9068, lng: -43.1729, desc: "Arena Black High Performance" },
+            { nome: "SportLife - Unidade Joinville (SC)", lat: -26.3044, lng: -48.8456, desc: "Estúdio de Biometria e Fisiologia" },
+            { nome: "SportLife - Unidade Amazonas (AM)", lat: -3.1190, lng: -60.0217, desc: "Complexo de Performance do Norte" },
+            { nome: "SportLife - Unidade Belo Horizonte (MG)", lat: -19.9167, lng: -43.9345, desc: "Intelligent Training Lab" },
+            { nome: "SportLife - Unidade Brasília (DF)", lat: -15.7942, lng: -47.8822, desc: "Unidade Corporativa & Recovery 24h" }
+        ];
+
+        unidadesSportLife.forEach(unidade => {
+            const popupContent = `
+                <div class="popup-title">${unidade.nome}</div>
+                <div class="popup-desc">${unidade.desc}</div>
+            `;
+            L.marker([unidade.lat, unidade.lng])
+                .addTo(map)
+                .bindPopup(popupContent);
+        });
+
         // --- Controle de acesso por tipo de usuário ---
-        const tipoUsuario = localStorage.getItem('tipoUsuario') || 'usuario'; // Simulação
+        const tipoUsuario = localStorage.getItem('tipoUsuario') || 'usuario'; 
 
         // Menu
         const linkProduto = document.querySelector('nav a[href="produto.html"]');
