@@ -3,187 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | SportLife</title>
+    <title>Cadastro | SportLife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-    --primary-purple: #4f46e5;
-    --bg-black: #0a0a0f;
-    --card-gray: rgba(255, 255, 255, 0.03);
-    --border: rgba(79, 70, 229, 0.15);
-    --text-muted: #94a3b8;
-}
+            --primary: #4f46e5;
+            --primary-glow: rgba(79, 70, 229, 0.4);
+            --bg-dark: #06060a;
+            --card-bg: rgba(10, 10, 15, 0.7);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --input-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-body {
-    background-color: var(--bg-black);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
 
-/* Fundo glow sutil */
-.glow {
-    position: fixed;
-    width: 400px;
-    height: 400px;
-    background: #3730a3;
-    filter: blur(150px);
-    border-radius: 50%;
-    opacity: 0.1;
-    z-index: -1;
-}
+        /* Orbes de luz de fundo (Glow Dinâmico) */
+        .bg-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(79,70,229,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -10%;
+            left: -10%;
+            z-index: 1;
+        }
 
-/* Card central */
-.card {
-    background: var(--card-gray);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-    padding: 40px 30px;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-}
+        .bg-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(67, 56, 202, 0.12) 0%, rgba(0,0,0,0) 70%);
+            bottom: -20%;
+            right: -10%;
+            z-index: 1;
+        }
 
-/* Título */
-h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 15px;
-    background: linear-gradient(to bottom, #fff, var(--primary-purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+        /* Container do Card */
+        .card-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 440px;
+            padding: 20px;
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-/* Inputs */
-.input-group {
-    margin: 15px 0;
-    text-align: left;
-}
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--card-border);
+            padding: 40px 35px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
 
-.input-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 5px;
-}
+        /* Título Estilizado com Degradê Roxo */
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(180deg, #ffffff 20%, #818cf8 65%, #4f46e5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-input {
-    width: 100%;
-    padding: 14px 18px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
-    color: white;
-    font-size: 0.95rem;
-    outline: none;
-    transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-}
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
 
-input:focus {
-    border-color: var(--primary-purple);
-    background: rgba(79,70,229,0.08);
-    box-shadow: 0 0 15px rgba(79,70,229,0.2);
-}
+        /* Inputs */
+        .input-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
 
-/* Botão */
-button {
-    width: 100%;
-    padding: 16px;
-    margin-top: 20px;
-    background: var(--primary-purple);
-    border: none;
-    border-radius: 4px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: 0.4s;
-    box-shadow: 0 4px 15px rgba(79,70,229,0.3);
-}
+        .input-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
 
-button:hover {
-    background: white;
-    color: black;
-    transform: translateY(-3px);
-}
+        .input-wrapper {
+            position: relative;
+        }
 
-/* Nota inferior */
-.note {
-    margin-top: 15px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-align: center;
-}
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--input-border);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
-/* Responsividade */
-@media (max-width: 480px){
-    .card {
-        padding: 30px 20px;
-    }
+        input:focus {
+            border-color: var(--primary);
+            background: rgba(79, 70, 229, 0.04);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
 
-    h1 {
-        font-size: 2.5rem;
-    }
-}
+        /* Botão Alta Performance */
+        button {
+            width: 100%;
+            padding: 16px;
+            margin-top: 10px;
+            background: var(--primary);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(79, 70, 229, 0.5);
+            filter: brightness(1.1);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Link inferior */
+        .note {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .note a {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .note a:hover {
+            color: white;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 35px 24px; }
+            h1 { font-size: 3rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" placeholder="Digite seu usuário" required>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <div class="card-container">
+        <div class="card">
+            <h1>Cadastre-se</h1>
+            <div class="subtitle">Crie sua conta no SportLife para começar</div>
+            
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="fullname">Nome Completo</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="fullname" placeholder="Digite seu nome completo" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="username">Usuário</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="username" placeholder="Escolha um nome de usuário" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="••••••••" minlength="6" required>
+                    </div>
+                </div>
+
+                <button type="submit">Criar Conta</button>
+            </form>
+            
+            <div class="note">
+                Já tem uma conta? <a href="login.html">Faça seu Login</a>
             </div>
-            <div class="input-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" placeholder="••••••••" required>
-            </div>
-            <button type="submit">Acessar</button>
-        </form>
-        <div class="note">
-            Usuário comum não verá as opções Produtos e Serviços.
         </div>
     </div>
 
     <script>
-        const loginForm = document.getElementById('loginForm');
-
-        loginForm.addEventListener('submit', function(e){
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', function(e){
             e.preventDefault();
-
+            
+            const fullname = document.getElementById('fullname').value.trim();
             const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value.trim();
 
-            // Aqui você pode validar de acordo com seu sistema real
-            // Para exemplo:
-            let tipoUsuario = 'usuario'; // padrão usuário comum
-
-            if(username === 'admin' && password === 'admin123'){
-                tipoUsuario = 'admin';
-            }
-
-            // Salva tipo de usuário no localStorage
-            localStorage.setItem('tipoUsuario', tipoUsuario);
-
-            // Redireciona para a home
-            window.location.href = 'inicial.html';
+            localStorage.setItem('tipoUsuario', 'usuario');
+            localStorage.setItem('nomeUsuario', fullname);
+            
+            alert('Conta criada com sucesso!');
+            window.location.href = 'login.html'; 
         });
     </script>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Administrador | SportLife</title>
+    <title>Login | SportLife</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -171,7 +171,17 @@
             margin-top: 30px;
             font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.4;
+        }
+
+        .note a {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .note a:hover {
+            color: white;
         }
 
         /* Animações */
@@ -193,8 +203,8 @@
 
     <div class="card-container">
         <div class="card">
-            <h1>Administradores</h1>
-            <div class="subtitle">Acesso restrito ao painel de controle</div>
+            <h1>Entrar</h1>
+            <div class="subtitle">Acesse sua conta no SportLife para continuar</div>
             
             <form id="loginForm">
                 <div class="input-group">
@@ -209,11 +219,11 @@
                         <input type="password" id="password" placeholder="••••••••" required>
                     </div>
                 </div>
-                <button type="submit">Acessar Painel</button>
+                <button type="submit">Acessar Plataforma</button>
             </form>
             
             <div class="note">
-                Atenção: Somente administradores podem acessar todas as opções da plataforma.
+                Não tem uma conta? <a href="cadastro.html">Cadastre-se</a>
             </div>
         </div>
     </div>
@@ -224,13 +234,14 @@
             e.preventDefault();
             const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value.trim();
+            let tipoUsuario = 'usuario';
 
             if(username === 'admin' && password === 'admin123'){
-                localStorage.setItem('tipoUsuario', 'admin');
-                window.location.href = 'inicial.html';
-            } else {
-                alert('Usuário ou senha incorretos. Somente administradores podem acessar.');
+                tipoUsuario = 'admin';
             }
+
+            localStorage.setItem('tipoUsuario', tipoUsuario);
+            window.location.href = 'inicial.html';
         });
     </script>
 </body>

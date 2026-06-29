@@ -1,0 +1,79 @@
+Usuário
+
+Alunos
+Administradores
+Campos: ID
+ nome
+ e-mail
+ senha
+ telefone
+ data de nascimento
+ tipo de usuário
+ endereço.
+
+Profissional
+Personal trainers, nutricionistas, outros funcionários
+
+Campos: ID
+ nome
+ especialidade
+ e-mail
+ telefone
+ horários
+ disponíveis
+
+Agendamento
+Aulas, consultas, treinos
+Campos: ID
+ data
+ hora
+ usuário
+ profissional
+ status (agendado, cancelado, reagendado)
+
+Treino/Plano Treino
+
+Campos: ID
+ usuário
+ profissional
+ exercícios
+ duração
+ frequência
+ observações
+
+Metas
+
+Campos: ID
+ usuário
+ descrição da meta
+ data de início
+ data de término
+ status
+
+Avaliação Física
+
+Campos: ID
+ usuário
+ data
+ peso
+ medidas
+ percentual de gordura
+ histórico de evolução
+
+Plano Alimentar
+
+Campos: ID
+ usuário
+ nutricionista
+ refeições
+ calorias
+ macros
+ observações
+
+Produto/Serviço
+
+Campos: ID
+ nome
+ descrição
+ valor
+ quantidade disponível
